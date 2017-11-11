@@ -4,6 +4,9 @@ secret.txt
 # Files with downloaded data
 *.tsv
 
+#Emacs backup files
+*~
+
 # Photos
 examples/photos/
 
@@ -105,4 +108,6 @@ bot_cp_*
 
 # Settings files
 examples/*.txt
+examples/ultimate/*.txt
+examples/ultimate_schedule/*.txt
 *.checkpoint
