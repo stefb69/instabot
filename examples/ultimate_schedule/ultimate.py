@@ -288,7 +288,7 @@ def run_threaded(job_fn):
     job_thread=threading.Thread(target=job_fn)
     job_thread.start()
 
-schedule.every(15).mintutes.do(run_threaded, rehash)             #reload user and hashtag list every hour
+schedule.every(15).minutes.do(run_threaded, rehash)             #reload user and hashtag list every hour
 schedule.every(1).hour.do(run_threaded, stats)              #get stats
 schedule.every(8).hours.do(run_threaded, job1)              #like hashtag
 schedule.every(2).hours.do(run_threaded, job2)              #like timeline
