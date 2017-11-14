@@ -27,6 +27,7 @@ def initbot():
         min_following_to_follow=config.getint('BotParams','min_following_to_follow'),
         max_followers_to_following_ratio=config.getint('BotParams','max_followers_to_following_ratio'),
         max_following_to_followers_ratio=config.getint('BotParams','max_following_to_followers_ratio'),
+        max_following_to_block=config.getint('BotParams','max_following_to_block'),
         min_media_count_to_follow=config.getint('BotParams','min_media_count_to_follow'),
         like_delay=config.getint('BotParams','like_delay'),
         unlike_delay=config.getint('BotParams','unlike_delay'),
@@ -69,6 +70,7 @@ def parameter_setting():
     bot.logger.info("Min following to follow: " + config.get('BotParams','min_following_to_follow'))
     bot.logger.info("Max followers to following_ratio: " + config.get('BotParams','max_followers_to_following_ratio'))
     bot.logger.info("Max following to followers_ratio: " + config.get('BotParams','max_following_to_followers_ratio'))
+    bot.logger.info("Max following to block: " + config.get('BotParams','max_following_to_block'))
     bot.logger.info("Min media_count to follow:" + config.get('BotParams','min_media_count_to_follow'))
     bot.logger.info("Like delay: " + config.get('BotParams','like_delay'))
     bot.logger.info("Unlike delay: " + config.get('BotParams','unlike_delay'))
@@ -103,6 +105,10 @@ def like_followers():
 def follow_followers():
     bot.logger.info("Follow followers")
     bot.follow_followers(get_random(random_user_file))
+
+def block_bots():
+    bot.logger.info("Blocking Bots")
+    bot.block_bots()
 
 def comment_medias():
     bot.logger.info("Comment medias")   
@@ -218,10 +224,11 @@ if __name__ == '__main__':
     schedule.every(1).hour.do(run_threaded, stats)              #get stats
     schedule.every(8).hours.do(run_threaded, follow_hashtags)              #like hashtag
     schedule.every(2).hours.do(run_threaded, like_hashtag)              #like timeline
-    # schedule.every(1).days.at("00:45").do(run_threaded, like_followers)   #like followers of users from file
-    schedule.every(1).days.at("10:30").do(run_threaded, follow_followers)   #follow followers
+    schedule.every(1).days.at("17:45").do(run_threaded, like_followers)   #like followers of users from file
+    schedule.every(1).days.at("12:30").do(run_threaded, follow_followers)   #follow followers
     # schedule.every(16).hours.do(run_threaded, comment_medias)             #comment medias
-    schedule.every(2).days.at("08:00").do(run_threaded, unfollow_non_followers)   #unfollow non-followers
+    schedule.every(1).days.at("10:35").do(run_threaded, unfollow_non_followers)   #unfollow non-followers
+    # schedule.every(1).days.at("07:00").do(run_threaded, block_bots)   #block bots
     schedule.every(12).hours.do(run_threaded, follow_users)             #follow users from hashtag from file
     # schedule.every(1).days.at("21:28").do(run_threaded, upload_image)   #upload pics
     schedule.every(4).days.at("07:50").do(run_threaded, blacklist_non_followers)   #non-followers blacklist
