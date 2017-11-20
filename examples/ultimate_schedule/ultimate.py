@@ -225,9 +225,9 @@ if __name__ == '__main__':
     schedule.every(8).hours.do(run_threaded, follow_hashtags)              #like hashtag
     schedule.every(2).hours.do(run_threaded, like_hashtag)              #like timeline
     schedule.every(1).days.at("17:45").do(run_threaded, like_followers)   #like followers of users from file
-    schedule.every(1).days.at("12:30").do(run_threaded, follow_followers)   #follow followers
+    schedule.every(1).days.at("18:30").do(run_threaded, follow_followers)   #follow followers
     # schedule.every(16).hours.do(run_threaded, comment_medias)             #comment medias
-    schedule.every(1).days.at("10:35").do(run_threaded, unfollow_non_followers)   #unfollow non-followers
+    schedule.every(1).days.at("08:30").do(run_threaded, unfollow_non_followers)   #unfollow non-followers
     # schedule.every(1).days.at("07:00").do(run_threaded, block_bots)   #block bots
     schedule.every(12).hours.do(run_threaded, follow_users)             #follow users from hashtag from file
     # schedule.every(1).days.at("21:28").do(run_threaded, upload_image)   #upload pics
